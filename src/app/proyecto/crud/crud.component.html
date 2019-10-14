@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg-12 navbar-success bg-success">aqui va la barra</nav>
+<div class="container"> 
+<p>
+  Esto es una prueba
+</p>
+<div class="row-lg-12">
+<form class="form-group" #formulario=ngForm (ngSubmit)="crearuser(formulario)">
+<div class="form-group">
+  <input class="form-control-md-6" type="text" name="name" #name="ngModel"  [(ngModel)]=s.user.name  placeholder="nombre">
+ </div>
+<div class="form-group">
+    <input class="form-control-md-6" [(ngModel)]=s.user.salary type="number" #salary="ngModel" name="salary" placeholder="salario">
+</div>
+<div class="form-group">
+    <input class="form-control-md-6" [(ngModel)]=s.user.cargo type="text" name="status" #status="ngModel" placeholder="cargo">
+</div>
+<div class="form-action-row"> <button type="submit" class="btn btn-success">enter</button>
+ <button type="reset" class="btn btn-danger"> cancelar</button> 
+</div>
+<div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="alerta1">
+    <h6 class="text-success">ingreso existoso</h6>          <!-- alertas-->
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    <div class=" col-sm-3 alert alert-warning alert-dismissible fade show" role="alert" *ngIf="alerta2">
+        <h6 class="text-warning">ingreso fallido</h6> <!-- alertas-->
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+        </button>
+  </div>
+</form>
+
+</div>
+
+</div>
+
+<footer>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of s.u">
+            <th scope="row-md-4">{{a._id}} </th>
+            <td>{{a.name}}</td>
+            <td>{{a.salary}}</td>
+            <td>{{a.status}}</td>
+             </tr>
+          </tbody>
+      </table>
+</footer>
