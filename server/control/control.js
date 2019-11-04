@@ -1,8 +1,14 @@
 const e={};
 const empleado= require('../esquemas/schema');
 e.getEmpleado= async (req, res)=>{
-   const emp= await empleado.find();
+// mongo db documentacion {"filtro":valor del filtro}
+   const emp= await empleado.find({"observacions.second":req.params.observacions});
    res.json(emp);
+};
+e.getEmpleados= async (req, res)=>{
+
+  const emp= await empleado.find();
+  res.json(emp);
 };
 e.Crear=  async (req, res)=>{
   const e=new empleado(req.body);
@@ -27,7 +33,7 @@ e.Editar= async (req, res) =>{
              salary: req.body.salary, 
              status: req.body.status 
   } ;
-   await empleado.updateOne(/*req.params.id*/ {"_id": req.params.id},/*id,*/{ $set: emp },{upsert:true},(err, doc)=>{
+   await empleado.updateOne(/*req.params.id*/ {"_id": req.params.id},/*id,*/{ $set: emp },{upsert:true},(err, doc)=>{// actualiza cualquier registro
     if(err){
       console.log('not ok');
     }
