@@ -1,4 +1,5 @@
 const e={};
+const l={};
 const empleado= require('../esquemas/schema');
 e.getEmpleado= async (req, res)=>{
 // mongo db documentacion {"filtro":valor del filtro}
@@ -10,10 +11,12 @@ e.getEmpleados= async (req, res)=>{
   const emp= await empleado.find();
   res.json(emp);
 };
-e.Crear=  async (req, res)=>{
+ 
+e.Crear=async (req, res)=>{
   const e=new empleado(req.body);
- await e.save();
- console.log(req.body);
+ 
+  await e.save();
+  console.log(req.body);
  res.json('ok');
 };
 e.getId = async (req,res)=>{
@@ -29,9 +32,10 @@ e.getId = async (req,res)=>{
 e.Editar= async (req, res) =>{
   
  //const {id } =req.params; // es lo mismo que (req.params.id) que esta en getId
-  const emp={name: req.body.name,
-             salary: req.body.salary, 
-             status: req.body.status 
+  const emp={observacions:{first:req.body.observacions.first,
+                            second: req.body.observacions.second }
+            
+             //status: req.body.status 
   } ;
    await empleado.updateOne(/*req.params.id*/ {"_id": req.params.id},/*id,*/{ $set: emp },{upsert:true},(err, doc)=>{// actualiza cualquier registro
     if(err){
