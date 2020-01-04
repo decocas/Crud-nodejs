@@ -14,6 +14,15 @@
 <div class="form-group">
     <input class="form-control-md-6" [(ngModel)]=s.user.cargo type="text" name="status" #status="ngModel" placeholder="cargo">
 </div>
+ 
+  <div class="form-group">
+  <input class="form-control-md-6" [(ngModel)]=s.user.observacions.first type="text" name="observacions.first" #observacions="ngModel" placeholder="cargo">
+</div>
+<div class="form-group">
+  <input class="form-control-md-6" [(ngModel)]=s.user.observacions.second type="number" min="0" name="observacions.second" #observacions="ngModel" placeholder="cargo">
+</div>
+ 
+
 <div class="form-action-row"> <button type="submit" class="btn btn-success">enter</button>
  <button type="reset" class="btn btn-danger"> cancelar</button> 
 </div>
@@ -43,15 +52,32 @@
             <th scope="col">Name</th>
             <th scope="col">Salary</th>
             <th scope="col">Status</th>
+            <th scope="col">info</th>
+           
+            
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let a of s.u">
+          <tr *ngFor="let a of s.u  ">
             <th scope="row-md-4">{{a._id}} </th>
             <td>{{a.name}}</td>
             <td>{{a.salary}}</td>
             <td>{{a.status}}</td>
-             </tr>
+          <td >
+            <tr>  <th scope="col">id </th>
+                  <th scope="col">first </th>
+                  <th scope="col"> second</th>
+                </tr> 
+            <tr *ngFor="let b of a.observacions"  >
+                 
+                      <td *ngIf="b._id!=null">{{b._id}} </td>
+                      <td *ngIf="b.first!=null">{{b.first}} </td> 
+                      <td *ngIf="b.second!=null"> {{b.second}}</td> 
+                
+               
+          </tr>            
+          </td>  
+        </tr>
           </tbody>
       </table>
 </footer>

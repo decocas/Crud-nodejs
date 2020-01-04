@@ -12,3 +12,5 @@ app.get('/', (req,res)=>{
 app.use(cors());
 app.use(expre.json()); 
 app.use('/index',require('../ruta/ruta'));
+app.use('/index/carro',require('../ruta/ruta2'));
+ 
